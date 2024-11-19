@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const pack = require('./../packs/pack.json')
+
 router.get('/', (req, res) => {
   res.send('<h1>You have reached the packs route!</h1>') 
 })

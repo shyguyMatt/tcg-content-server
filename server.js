@@ -6,7 +6,6 @@ const server = http.createServer(app);
 const cors = require('cors')
 const router = require('./routes')
 
-const pack = require('./packs/pack.json')
 const db = new sqlite3.Database('./db/database.db');
 
 const port = 4235;
