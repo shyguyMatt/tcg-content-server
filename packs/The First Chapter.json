@@ -1,4 +1,7 @@
 {
+  "name": "The First Chapter",
+  "game": "lorcana",
+  "set": "1",
   "cards": [
     {
       "1": 100

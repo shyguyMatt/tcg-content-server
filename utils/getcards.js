@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 async function getCards() {
-  const url = "https://api.lorcast.com/v0/sets/1/cards";
+  const url = "https://api.lorcast.com/v0/sets/6/cards";
   let cardIDs = {
     common: [],
     uncommon: [],

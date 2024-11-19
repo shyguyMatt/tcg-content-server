@@ -1,13 +1,25 @@
 const router = require('express').Router();
 
-const pack = require('./../packs/pack.json')
+const fs = require('fs')
 
-router.get('/', (req, res) => {
-  res.send('<h1>You have reached the packs route!</h1>') 
+router.get('', (req, res) => {
+  let filenames = fs.readdirSync('./packs')
+  let result = []
+  filenames.forEach(file => {
+    let content = JSON.parse(fs.readFileSync('./packs/' + file, 'utf-8'))
+    result.push({
+      name: content.name,
+      set:  content.set,
+      game: content.game,
+      filename: file
+    })
+  });
+  res.send(result)
 })
 
-router.get('/open_pack', async (req, res) => {
+router.post('/open_pack', async (req, res) => {
   let cards = []
+  let pack = JSON.parse(fs.readFileSync(`./packs/${req.body.filename}`))
 
   try {
     pack.cards.forEach(card => {
@@ -16,7 +28,11 @@ router.get('/open_pack', async (req, res) => {
       let value = 0
       for (let [key, cardvalue] of Object.entries(card)) {
         if (num <= cardvalue + value && num > value) {
-          cards.push(pack.cardIDs[key-1][Math.floor(Math.random() * pack.cardIDs[key-1].length)])
+          cards.push({
+            game: pack.game,
+            set: pack.set,
+            card: pack.cardIDs[key-1][Math.floor(Math.random() * pack.cardIDs[key-1].length)]
+          })
         }
         value = value + cardvalue
       }
