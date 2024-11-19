@@ -12,7 +12,7 @@ const port = 4235;
 
 // configure CORS
 const corsOptions = {
-  origin: 'https://packs.shyguymatt.com',
+  origin: ['https://packs.shyguymatt.com', 'http://localhost:3000'],
   optionsSuccessStatus: 200
 }
 
